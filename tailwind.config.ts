@@ -14,9 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
-        heading: ["Inter", "system-ui", "sans-serif"],
-        mono: ["JetBrains Mono", "monospace"],
+        sans: ["Space Grotesk", "system-ui", "sans-serif"],
+        display: ["Instrument Serif", "Georgia", "serif"],
+        mono: ["Space Mono", "monospace"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -62,8 +62,6 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        kicker: "hsl(var(--kicker))",
-        "hero-lead": "hsl(var(--hero-lead))",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -79,15 +77,15 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-        "fade-in": {
-          from: { opacity: "0", transform: "translateY(12px)" },
-          to: { opacity: "1", transform: "translateY(0)" },
+        "marquee": {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-50%)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "fade-in": "fade-in 0.5s ease-out forwards",
+        "marquee": "marquee 30s linear infinite",
       },
     },
   },

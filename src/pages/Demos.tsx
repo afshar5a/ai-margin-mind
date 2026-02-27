@@ -1,7 +1,15 @@
 import { useState } from "react";
-import { Search, BarChart3, MessageSquare } from "lucide-react";
+import { motion } from "framer-motion";
+import { MessageSquare, Search, BarChart3 } from "lucide-react";
 
 const safetyNote = "No proprietary or confidential employer data is used. Use only public or self-provided text.";
+
+const fade = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.5 },
+};
 
 // --- Prompt Playground ---
 const PromptPlayground = () => {
@@ -9,9 +17,9 @@ const PromptPlayground = () => {
   const [output, setOutput] = useState("");
 
   const demoResponses: Record<string, string> = {
-    "cost": "Demo: At 1M requests/month with a 40% cache hit rate, CPER = ($0.002 + $0.0005) / 600,000 ≈ $0.0000042 per effective request. Margin pressure emerges above 2M requests if RPU stays flat.",
-    "margin": "Demo: Margin resilience depends on the ratio of variable cost growth to revenue growth. If inference cost grows linearly with users but revenue grows sub-linearly, structural margin erosion is inevitable.",
-    "default": "Demo: This is a placeholder response. In production, this would connect to an LLM API. Try typing 'cost' or 'margin' for themed demo outputs.",
+    cost: "Demo: At 1M requests/month with a 40% cache hit rate, CPER = ($0.002 + $0.0005) / 600,000 ≈ $0.0000042 per effective request. Margin pressure emerges above 2M requests if RPU stays flat.",
+    margin: "Demo: Margin resilience depends on the ratio of variable cost growth to revenue growth. If inference cost grows linearly with users but revenue grows sub-linearly, structural margin erosion is inevitable.",
+    default: "Demo: This is a placeholder response. In production, this would connect to an LLM API. Try typing 'cost' or 'margin' for themed demo outputs.",
   };
 
   const handleSubmit = () => {
@@ -22,29 +30,31 @@ const PromptPlayground = () => {
 
   return (
     <div>
-      <h3 className="font-semibold text-card-foreground mb-3">Prompt Playground</h3>
-      <p className="text-sm text-muted-foreground mb-4">
+      <div className="flex items-center gap-3 mb-4">
+        <div className="w-8 h-8 rounded bg-primary/10 flex items-center justify-center">
+          <MessageSquare size={14} className="text-primary" />
+        </div>
+        <h3 className="font-medium text-foreground text-lg">Prompt Playground</h3>
+      </div>
+      <p className="text-sm text-dim mb-6">
         Demo-mode placeholder outputs. Type a prompt related to AI systems economics. Try "cost" or "margin" for themed responses.
       </p>
       <textarea
         value={input}
         onChange={(e) => setInput(e.target.value)}
         placeholder="e.g., What drives CPER at scale?"
-        className="w-full h-24 p-3 rounded-md border border-border bg-background text-foreground text-sm resize-none focus:outline-none focus:ring-1 focus:ring-ring"
+        className="w-full h-28 p-4 rounded border border-border bg-background text-foreground text-sm resize-none focus:outline-none focus:ring-1 focus:ring-ring font-mono"
       />
-      <button
-        onClick={handleSubmit}
-        className="mt-2 px-4 py-2 rounded-md bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity"
-      >
+      <button onClick={handleSubmit} className="mt-3 px-5 py-2.5 bg-primary text-primary-foreground text-sm font-medium rounded hover:opacity-90 transition-opacity">
         Run (Demo)
       </button>
       {output && (
-        <div className="mt-4 equation-block">
-          <p className="text-xs text-muted-foreground mb-1">Response</p>
-          <p>{output}</p>
+        <div className="mt-6 border-l-2 border-primary pl-5 py-2">
+          <p className="text-[10px] uppercase tracking-widest text-dim mb-2">Response</p>
+          <p className="text-sm text-foreground font-mono leading-relaxed">{output}</p>
         </div>
       )}
-      <p className="text-xs text-muted-foreground mt-3">Limitations: No real LLM connected. Outputs are hardcoded demo strings.</p>
+      <p className="text-[11px] text-dim mt-4">Limitations: No real LLM connected. Outputs are hardcoded demo strings.</p>
     </div>
   );
 };
@@ -70,44 +80,43 @@ const RetrievalDemo = () => {
 
   return (
     <div>
-      <h3 className="font-semibold text-card-foreground mb-3">Retrieval Demo</h3>
-      <p className="text-sm text-muted-foreground mb-4">
+      <div className="flex items-center gap-3 mb-4">
+        <div className="w-8 h-8 rounded bg-primary/10 flex items-center justify-center">
+          <Search size={14} className="text-primary" />
+        </div>
+        <h3 className="font-medium text-foreground text-lg">Retrieval Demo</h3>
+      </div>
+      <p className="text-sm text-dim mb-6">
         Paste text, then query it. Simple client-side keyword matching shows top passages.
       </p>
       <textarea
         value={text}
         onChange={(e) => setText(e.target.value)}
         placeholder="Paste a paragraph or document text here..."
-        className="w-full h-28 p-3 rounded-md border border-border bg-background text-foreground text-sm resize-none focus:outline-none focus:ring-1 focus:ring-ring mb-2"
+        className="w-full h-32 p-4 rounded border border-border bg-background text-foreground text-sm resize-none focus:outline-none focus:ring-1 focus:ring-ring mb-3"
       />
       <div className="flex gap-2">
         <input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search query..."
-          className="flex-1 px-3 py-2 rounded-md border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-1 focus:ring-ring"
+          className="flex-1 px-4 py-2.5 rounded border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-1 focus:ring-ring"
         />
-        <button
-          onClick={handleRetrieve}
-          className="px-4 py-2 rounded-md bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity"
-        >
+        <button onClick={handleRetrieve} className="px-5 py-2.5 bg-primary text-primary-foreground text-sm font-medium rounded hover:opacity-90 transition-opacity">
           Retrieve
         </button>
       </div>
       {results.length > 0 && (
-        <div className="mt-4 space-y-2">
+        <div className="mt-6 space-y-3">
           {results.map((r, i) => (
-            <div key={i} className="equation-block flex items-start gap-3">
-              <span className="tag-pill text-[10px] shrink-0">#{i + 1}</span>
-              <p className="text-sm">{r.passage}</p>
+            <div key={i} className="flex items-start gap-4 border-b border-border pb-3">
+              <span className="font-mono text-xs text-primary/60 mt-1 shrink-0">{String(i + 1).padStart(2, "0")}</span>
+              <p className="text-sm text-foreground">{r.passage}</p>
             </div>
           ))}
         </div>
       )}
-      {results.length === 0 && query && (
-        <p className="text-xs text-muted-foreground mt-3">No matching passages found. Try different terms.</p>
-      )}
-      <p className="text-xs text-muted-foreground mt-3">Limitations: Keyword-based only. No embeddings or semantic search.</p>
+      <p className="text-[11px] text-dim mt-4">Limitations: Keyword-based only. No embeddings or semantic search.</p>
     </div>
   );
 };
@@ -130,26 +139,31 @@ const EvalDashboard = () => {
 
   return (
     <div>
-      <h3 className="font-semibold text-card-foreground mb-3">Evaluation Dashboard</h3>
-      <p className="text-sm text-muted-foreground mb-4">
+      <div className="flex items-center gap-3 mb-4">
+        <div className="w-8 h-8 rounded bg-primary/10 flex items-center justify-center">
+          <BarChart3 size={14} className="text-primary" />
+        </div>
+        <h3 className="font-medium text-foreground text-lg">Evaluation Dashboard</h3>
+      </div>
+      <p className="text-sm text-dim mb-6">
         Static built-in data comparing cost, quality, and CPER across models. Click column headers to sort.
       </p>
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto border border-border rounded">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-border">
+            <tr className="border-b border-border bg-secondary/50">
               {[
                 { key: "model", label: "Model" },
-                { key: "costPer1kTokens", label: "Cost/1k tokens" },
+                { key: "costPer1kTokens", label: "$/1k tokens" },
                 { key: "quality", label: "Quality" },
-                { key: "latencyMs", label: "Latency (ms)" },
+                { key: "latencyMs", label: "Latency" },
                 { key: "cper", label: "CPER" },
               ].map((col) => (
                 <th
                   key={col.key}
                   onClick={() => setSortKey(col.key as keyof typeof evalData[0])}
-                  className={`text-left py-2 px-3 font-medium cursor-pointer hover:text-primary transition-colors ${
-                    sortKey === col.key ? "text-primary" : "text-muted-foreground"
+                  className={`text-left py-3 px-4 font-medium cursor-pointer hover:text-primary transition-colors text-[12px] uppercase tracking-wider ${
+                    sortKey === col.key ? "text-primary" : "text-dim"
                   }`}
                 >
                   {col.label}
@@ -159,69 +173,70 @@ const EvalDashboard = () => {
           </thead>
           <tbody>
             {sorted.map((row) => (
-              <tr key={row.model} className="border-b border-border/50 hover:bg-muted/50 transition-colors">
-                <td className="py-2 px-3 font-mono text-card-foreground">{row.model}</td>
-                <td className="py-2 px-3 text-muted-foreground">${row.costPer1kTokens}</td>
-                <td className="py-2 px-3 text-muted-foreground">{row.quality}%</td>
-                <td className="py-2 px-3 text-muted-foreground">{row.latencyMs}</td>
-                <td className="py-2 px-3 font-mono text-primary">${row.cper}</td>
+              <tr key={row.model} className="border-b border-border/50 hover:bg-secondary/30 transition-colors">
+                <td className="py-3 px-4 font-mono text-foreground text-[13px]">{row.model}</td>
+                <td className="py-3 px-4 text-dim">${row.costPer1kTokens}</td>
+                <td className="py-3 px-4 text-dim">{row.quality}%</td>
+                <td className="py-3 px-4 text-dim">{row.latencyMs}ms</td>
+                <td className="py-3 px-4 font-mono text-primary">${row.cper}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      <p className="text-xs text-muted-foreground mt-3">Limitations: Data is illustrative and static. Not sourced from live benchmarks.</p>
+      <p className="text-[11px] text-dim mt-4">Limitations: Data is illustrative and static. Not sourced from live benchmarks.</p>
     </div>
   );
 };
 
-const demoCards = [
-  { icon: MessageSquare, id: "prompt" },
-  { icon: Search, id: "retrieval" },
-  { icon: BarChart3, id: "eval" },
+const tabs = [
+  { id: "prompt", label: "Prompt Playground", icon: MessageSquare },
+  { id: "retrieval", label: "Retrieval Demo", icon: Search },
+  { id: "eval", label: "Eval Dashboard", icon: BarChart3 },
 ];
 
 const DemosPage = () => {
-  const [active, setActive] = useState<string>("prompt");
+  const [active, setActive] = useState("prompt");
 
   return (
     <div>
-      <section className="section-container">
-        <p className="text-sm font-mono text-kicker mb-3">Demos</p>
-        <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Interactive Demos</h1>
-        <p className="text-muted-foreground mb-4 max-w-2xl">
-          Explore interactive prototypes that illustrate the lab's research themes. All demos run client-side with no external API calls by default.
-        </p>
-        <div className="p-3 rounded-md bg-[hsl(var(--note-bg))] text-[hsl(var(--note-text))] text-xs leading-relaxed mb-10">
-          {safetyNote}
-        </div>
+      <section className="max-w-[1400px] mx-auto px-6 lg:px-10 py-20 md:py-28">
+        <motion.div {...fade}>
+          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-primary mb-4">Demos</p>
+          <h1 className="font-display text-5xl md:text-6xl text-foreground mb-6">
+            Interactive <span className="italic">Demos</span>
+          </h1>
+          <p className="text-dim text-lg max-w-2xl mb-4">
+            Explore interactive prototypes that illustrate the lab's research themes. All demos run client-side with no external API calls by default.
+          </p>
+          <div className="border-l-2 border-primary pl-4 py-1 text-[12px] text-dim mb-12 max-w-xl">
+            {safetyNote}
+          </div>
+        </motion.div>
 
-        {/* Demo tabs */}
-        <div className="flex gap-2 mb-8 flex-wrap">
-          {[
-            { id: "prompt", label: "Prompt Playground" },
-            { id: "retrieval", label: "Retrieval Demo" },
-            { id: "eval", label: "Evaluation Dashboard" },
-          ].map((tab) => (
+        {/* Tabs */}
+        <motion.div {...fade} className="flex gap-1 mb-8 bg-secondary rounded p-1 max-w-fit">
+          {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActive(tab.id)}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+              className={`flex items-center gap-2 px-4 py-2 rounded text-sm transition-all ${
                 active === tab.id
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-muted text-muted-foreground hover:text-foreground"
+                  ? "bg-primary text-primary-foreground font-medium shadow-sm"
+                  : "text-dim hover:text-foreground"
               }`}
             >
-              {tab.label}
+              <tab.icon size={14} />
+              <span className="hidden sm:inline">{tab.label}</span>
             </button>
           ))}
-        </div>
+        </motion.div>
 
-        <div className="rounded-lg border border-border bg-card p-6">
+        <motion.div {...fade} className="border border-border rounded bg-card p-6 md:p-10">
           {active === "prompt" && <PromptPlayground />}
           {active === "retrieval" && <RetrievalDemo />}
           {active === "eval" && <EvalDashboard />}
-        </div>
+        </motion.div>
       </section>
     </div>
   );

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Instrument+Serif:ital@0;1&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,90 +6,76 @@
 
 @layer base {
   :root {
-    --background: 0 0% 98%;
-    --foreground: 220 20% 15%;
-    --card: 0 0% 100%;
-    --card-foreground: 220 20% 15%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 220 20% 15%;
-    --primary: 160 60% 40%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 220 10% 92%;
-    --secondary-foreground: 220 20% 15%;
-    --muted: 220 10% 95%;
-    --muted-foreground: 220 10% 45%;
-    --accent: 160 60% 40%;
-    --accent-foreground: 0 0% 100%;
+    --background: 40 10% 97%;
+    --foreground: 30 10% 10%;
+    --card: 40 10% 94%;
+    --card-foreground: 30 10% 10%;
+    --popover: 40 10% 97%;
+    --popover-foreground: 30 10% 10%;
+    --primary: 38 90% 55%;
+    --primary-foreground: 30 10% 5%;
+    --secondary: 35 15% 90%;
+    --secondary-foreground: 30 10% 20%;
+    --muted: 35 10% 92%;
+    --muted-foreground: 30 8% 50%;
+    --accent: 38 90% 55%;
+    --accent-foreground: 30 10% 5%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border: 220 10% 88%;
-    --input: 220 10% 88%;
-    --ring: 160 60% 40%;
-    --radius: 0.5rem;
-    --sidebar-background: 0 0% 96%;
-    --sidebar-foreground: 220 10% 30%;
-    --sidebar-primary: 160 60% 40%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 10% 92%;
-    --sidebar-accent-foreground: 220 10% 30%;
-    --sidebar-border: 220 10% 88%;
-    --sidebar-ring: 160 60% 40%;
+    --border: 35 12% 87%;
+    --input: 35 12% 87%;
+    --ring: 38 90% 55%;
+    --radius: 0.25rem;
 
-    --equation-bg: 220 10% 95%;
-    --equation-border: 220 10% 85%;
-    --equation-text: 220 20% 25%;
-    --tag-bg: 220 10% 92%;
-    --tag-text: 220 10% 40%;
-    --callout-bg: 160 40% 95%;
-    --callout-border: 160 50% 70%;
-    --callout-text: 160 40% 25%;
-    --kicker: 160 60% 40%;
-    --hero-lead: 220 10% 40%;
-    --note-bg: 220 10% 95%;
-    --note-text: 220 10% 45%;
+    --sidebar-background: 40 10% 95%;
+    --sidebar-foreground: 30 10% 20%;
+    --sidebar-primary: 38 90% 55%;
+    --sidebar-primary-foreground: 30 10% 5%;
+    --sidebar-accent: 35 15% 90%;
+    --sidebar-accent-foreground: 30 10% 20%;
+    --sidebar-border: 35 12% 87%;
+    --sidebar-ring: 38 90% 55%;
+
+    --glow: 38 100% 60%;
+    --surface-elevated: 40 10% 99%;
+    --rule: 35 15% 82%;
+    --dim: 30 6% 60%;
   }
 
   .dark {
-    --background: 220 20% 7%;
-    --foreground: 210 20% 90%;
-    --card: 220 18% 10%;
-    --card-foreground: 210 20% 90%;
-    --popover: 220 18% 10%;
-    --popover-foreground: 210 20% 90%;
-    --primary: 160 60% 45%;
-    --primary-foreground: 220 20% 7%;
-    --secondary: 220 15% 15%;
-    --secondary-foreground: 210 20% 85%;
-    --muted: 220 15% 13%;
-    --muted-foreground: 215 15% 55%;
-    --accent: 160 60% 45%;
-    --accent-foreground: 220 20% 7%;
+    --background: 220 15% 6%;
+    --foreground: 40 15% 90%;
+    --card: 220 14% 10%;
+    --card-foreground: 40 15% 90%;
+    --popover: 220 14% 10%;
+    --popover-foreground: 40 15% 90%;
+    --primary: 38 90% 55%;
+    --primary-foreground: 220 15% 6%;
+    --secondary: 220 12% 14%;
+    --secondary-foreground: 40 10% 80%;
+    --muted: 220 12% 12%;
+    --muted-foreground: 220 8% 50%;
+    --accent: 38 90% 55%;
+    --accent-foreground: 220 15% 6%;
     --destructive: 0 62% 30%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 220 15% 18%;
-    --input: 220 15% 18%;
-    --ring: 160 60% 45%;
-    --sidebar-background: 220 18% 9%;
-    --sidebar-foreground: 210 20% 85%;
-    --sidebar-primary: 160 60% 45%;
-    --sidebar-primary-foreground: 220 20% 7%;
-    --sidebar-accent: 220 15% 14%;
-    --sidebar-accent-foreground: 210 20% 85%;
-    --sidebar-border: 220 15% 18%;
-    --sidebar-ring: 160 60% 45%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 12% 16%;
+    --input: 220 12% 16%;
+    --ring: 38 90% 55%;
 
-    --equation-bg: 220 18% 12%;
-    --equation-border: 220 15% 22%;
-    --equation-text: 160 40% 70%;
-    --tag-bg: 220 15% 15%;
-    --tag-text: 210 15% 65%;
-    --callout-bg: 160 30% 10%;
-    --callout-border: 160 50% 30%;
-    --callout-text: 160 40% 75%;
-    --kicker: 160 60% 50%;
-    --hero-lead: 215 15% 60%;
-    --note-bg: 220 15% 12%;
-    --note-text: 215 15% 55%;
+    --sidebar-background: 220 14% 8%;
+    --sidebar-foreground: 40 10% 80%;
+    --sidebar-primary: 38 90% 55%;
+    --sidebar-primary-foreground: 220 15% 6%;
+    --sidebar-accent: 220 12% 14%;
+    --sidebar-accent-foreground: 40 10% 80%;
+    --sidebar-border: 220 12% 16%;
+    --sidebar-ring: 38 90% 55%;
+
+    --glow: 38 100% 50%;
+    --surface-elevated: 220 14% 12%;
+    --rule: 220 10% 20%;
+    --dim: 220 8% 45%;
   }
 }
 
@@ -98,36 +84,59 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
   }
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-heading;
-  }
-  code, .font-mono {
-    font-family: 'JetBrains Mono', monospace;
+  ::selection {
+    background: hsl(var(--primary) / 0.25);
   }
 }
 
-@layer components {
-  .equation-block {
-    @apply bg-[hsl(var(--equation-bg))] border border-[hsl(var(--equation-border))] rounded-lg p-4 font-mono text-sm;
-    color: hsl(var(--equation-text));
+@layer utilities {
+  .font-display {
+    font-family: 'Instrument Serif', Georgia, serif;
   }
-  .tag-pill {
-    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium;
-    background: hsl(var(--tag-bg));
-    color: hsl(var(--tag-text));
+  .font-mono {
+    font-family: 'Space Mono', monospace;
   }
-  .callout-block {
-    @apply rounded-lg p-4 border-l-4;
-    background: hsl(var(--callout-bg));
-    border-color: hsl(var(--callout-border));
-    color: hsl(var(--callout-text));
+  .text-dim {
+    color: hsl(var(--dim));
   }
-  .section-container {
-    @apply max-w-5xl mx-auto px-6 py-16 md:py-24;
+  .bg-elevated {
+    background: hsl(var(--surface-elevated));
   }
-  .card-hover {
-    @apply transition-all duration-300 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5;
+  .border-rule {
+    border-color: hsl(var(--rule));
+  }
+  .glow-text {
+    color: hsl(var(--glow));
+  }
+  .glow-border {
+    border-color: hsl(var(--glow) / 0.3);
+  }
+  .glow-bg {
+    background: hsl(var(--glow) / 0.08);
   }
 }
+
+/* Horizontal rule accent */
+.accent-rule {
+  height: 1px;
+  background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--primary) / 0.1));
+}
+
+/* Stagger animation helper */
+.stagger-child {
+  opacity: 0;
+  animation: stagger-in 0.6s ease forwards;
+}
+@keyframes stagger-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(var(--muted-foreground)); }
