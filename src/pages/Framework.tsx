@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const definitions = [
   { name: "Cost per Effective Request (CPER)", eq: "CPER = (TokenCost + Overhead) / EffectiveRequests", desc: "Captures the true unit cost of every request that actually requires model computation — factoring out cached or redundant calls." },
@@ -7,72 +8,73 @@ const definitions = [
 ];
 
 const frameworkCards = [
-  {
-    num: "1",
-    title: "Architecture → Cost Map",
-    desc: "Map every architectural decision — model selection, retrieval layers, orchestration depth — to its cost footprint. No decision is cost-neutral.",
-    tags: ["Input/Output tokens", "Overhead per request", "Cache economics"],
-  },
-  {
-    num: "2",
-    title: "Margin Resilience",
-    desc: "Test how margins respond to shifts in usage volume, input complexity, and retrieval depth. Identify fragility before it scales.",
-    tags: ["Sensitivity analysis", "Break-even thresholds", "Risk levels"],
-  },
-  {
-    num: "3",
-    title: "Optimization Levers",
-    desc: "Define the constraint space — cost ceilings, latency bounds, quality floors — and identify architectural moves that improve margin without sacrificing output quality.",
-    tags: ["Constraint modeling", "Cost guardrails", "Architecture tactics"],
-  },
+  { num: "01", title: "Architecture → Cost Map", desc: "Map every architectural decision — model selection, retrieval layers, orchestration depth — to its cost footprint. No decision is cost-neutral.", tags: ["Input/Output tokens", "Overhead per request", "Cache economics"] },
+  { num: "02", title: "Margin Resilience", desc: "Test how margins respond to shifts in usage volume, input complexity, and retrieval depth. Identify fragility before it scales.", tags: ["Sensitivity analysis", "Break-even thresholds", "Risk levels"] },
+  { num: "03", title: "Optimization Levers", desc: "Define the constraint space — cost ceilings, latency bounds, quality floors — and identify architectural moves that improve margin without sacrificing output quality.", tags: ["Constraint modeling", "Cost guardrails", "Architecture tactics"] },
 ];
+
+const fade = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.5 },
+};
 
 const FrameworkPage = () => (
   <div>
-    <section className="section-container">
-      <p className="text-sm font-mono text-kicker mb-3">Framework</p>
-      <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-        AI systems as economic systems
-      </h1>
-      <p className="text-muted-foreground mb-12 max-w-2xl">
-        A modeling approach that treats AI systems as economic systems — linking architectural choices to cost, break-even thresholds, and margin resilience under scale.
-      </p>
+    <section className="max-w-[1400px] mx-auto px-6 lg:px-10 py-20 md:py-28">
+      <motion.div {...fade}>
+        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-primary mb-4">Framework</p>
+        <h1 className="font-display text-5xl md:text-6xl text-foreground mb-6">
+          AI systems as<br /><span className="italic text-primary">economic systems</span>
+        </h1>
+        <p className="text-dim text-lg max-w-2xl mb-16">
+          A modeling approach that treats AI systems as economic systems — linking architectural choices to cost, break-even thresholds, and margin resilience under scale.
+        </p>
+      </motion.div>
 
-      {/* Framework cards */}
-      <div className="grid md:grid-cols-3 gap-4 mb-16">
-        {frameworkCards.map((c) => (
-          <div key={c.num} className="rounded-lg border border-border bg-card p-6 card-hover">
-            <p className="text-xs font-mono text-primary mb-2">{c.num})</p>
-            <h3 className="font-semibold text-card-foreground mb-3">{c.title}</h3>
-            <p className="text-sm text-muted-foreground mb-4">{c.desc}</p>
+      {/* Framework steps */}
+      <div className="grid md:grid-cols-3 gap-px bg-border rounded overflow-hidden mb-20">
+        {frameworkCards.map((c, i) => (
+          <motion.div key={c.num} {...fade} transition={{ ...fade.transition, delay: i * 0.1 }} className="bg-card p-8 flex flex-col">
+            <p className="font-mono text-4xl text-primary/20 mb-6">{c.num}</p>
+            <h3 className="font-medium text-foreground text-xl mb-3">{c.title}</h3>
+            <p className="text-sm text-dim leading-relaxed mb-8 flex-1">{c.desc}</p>
             <div className="flex flex-wrap gap-1.5">
-              {c.tags.map((t) => <span key={t} className="tag-pill text-[10px]">{t}</span>)}
+              {c.tags.map((t) => (
+                <span key={t} className="text-[10px] px-2.5 py-1 rounded bg-secondary text-secondary-foreground">{t}</span>
+              ))}
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
 
-      {/* Core definitions */}
-      <h2 className="text-xl font-bold text-foreground mb-6">Core Definitions</h2>
-      <div className="space-y-5 mb-8">
-        {definitions.map((d) => (
-          <div key={d.name}>
-            <div className="equation-block mb-2">
-              <p className="text-xs text-muted-foreground mb-1">{d.name}</p>
-              <p className="font-semibold">{d.eq}</p>
+      {/* Core Definitions */}
+      <motion.div {...fade}>
+        <h2 className="font-display text-3xl text-foreground mb-10">Core Definitions</h2>
+      </motion.div>
+      <div className="space-y-8 mb-12">
+        {definitions.map((d, i) => (
+          <motion.div key={d.name} {...fade} transition={{ ...fade.transition, delay: i * 0.08 }} className="grid md:grid-cols-[280px_1fr] gap-6 items-start border-b border-border pb-8">
+            <div>
+              <p className="text-[11px] uppercase tracking-widest text-dim mb-2">{d.name}</p>
+              <p className="font-mono text-foreground">{d.eq}</p>
             </div>
-            <p className="text-sm text-muted-foreground pl-1">{d.desc}</p>
-          </div>
+            <p className="text-sm text-dim leading-relaxed">{d.desc}</p>
+          </motion.div>
         ))}
       </div>
 
-      <div className="callout-block text-sm">
-        <p className="font-semibold mb-1">Working principle</p>
-        <p>Margin is an architectural property. If architecture ignores economics, growth amplifies inefficiency.</p>
-      </div>
+      {/* Working principle */}
+      <motion.div {...fade} className="border-l-2 border-primary pl-6 py-2 max-w-xl">
+        <p className="text-sm font-medium text-foreground mb-1">Working principle</p>
+        <p className="text-sm text-dim leading-relaxed">
+          Margin is an architectural property. If architecture ignores economics, growth amplifies inefficiency.
+        </p>
+      </motion.div>
 
-      <div className="mt-10">
-        <Link to="/research" className="text-sm text-primary hover:underline">
+      <div className="mt-14">
+        <Link to="/research" className="text-sm text-primary hover:underline font-medium">
           → Explore research tracks
         </Link>
       </div>

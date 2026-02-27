@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const posts = [
   {
@@ -46,27 +47,45 @@ This research is exploratory. All data sources are publicly available. No employ
   },
 ];
 
+const fade = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.5 },
+};
+
 const WritingPage = () => (
   <div>
-    <section className="section-container">
-      <p className="text-sm font-mono text-kicker mb-3">Writing</p>
-      <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Research Notes</h1>
-      <p className="text-muted-foreground mb-12 max-w-2xl">
-        Working notes and essays on AI systems economics, margin resilience, and macro sentiment research. Clearly labeled as research — not production analysis.
-      </p>
-      <div className="space-y-6">
-        {posts.map((post) => (
-          <Link
-            key={post.slug}
-            to={`/writing/${post.slug}`}
-            className="block rounded-lg border border-border bg-card p-6 card-hover group"
-          >
-            <p className="text-xs font-mono text-muted-foreground mb-2">{post.date} · Research Note</p>
-            <h2 className="text-lg font-semibold text-card-foreground group-hover:text-primary transition-colors mb-2">
-              {post.title}
-            </h2>
-            <p className="text-sm text-muted-foreground">{post.summary}</p>
-          </Link>
+    <section className="max-w-[1400px] mx-auto px-6 lg:px-10 py-20 md:py-28">
+      <motion.div {...fade}>
+        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-primary mb-4">Writing</p>
+        <h1 className="font-display text-5xl md:text-6xl text-foreground mb-6">Research Notes</h1>
+        <p className="text-dim text-lg max-w-2xl mb-16">
+          Working notes and essays on AI systems economics, margin resilience, and macro sentiment research. Clearly labeled as research — not production analysis.
+        </p>
+      </motion.div>
+
+      <div className="space-y-0 border-t border-border">
+        {posts.map((post, i) => (
+          <motion.div key={post.slug} {...fade} transition={{ ...fade.transition, delay: i * 0.1 }}>
+            <Link
+              to={`/writing/${post.slug}`}
+              className="group block border-b border-border py-8 md:py-10 hover:bg-card/50 transition-colors px-2 -mx-2 rounded"
+            >
+              <div className="grid md:grid-cols-[140px_1fr] gap-4 md:gap-8">
+                <p className="font-mono text-[12px] text-dim md:pt-1">{post.date}</p>
+                <div>
+                  <h2 className="text-xl md:text-2xl font-medium text-foreground group-hover:text-primary transition-colors mb-3">
+                    {post.title}
+                  </h2>
+                  <p className="text-sm text-dim leading-relaxed max-w-xl">{post.summary}</p>
+                  <span className="inline-block mt-4 text-[12px] text-primary font-mono uppercase tracking-wider">
+                    Read note →
+                  </span>
+                </div>
+              </div>
+            </Link>
+          </motion.div>
         ))}
       </div>
     </section>
