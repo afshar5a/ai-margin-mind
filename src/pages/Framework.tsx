@@ -37,7 +37,7 @@ const FrameworkPage = () => (
       <div className="grid md:grid-cols-3 gap-px bg-border rounded overflow-hidden mb-20">
         {frameworkCards.map((c, i) => (
           <motion.div key={c.num} {...fade} transition={{ ...fade.transition, delay: i * 0.1 }} className="bg-card p-8 flex flex-col">
-            <p className="font-mono text-4xl text-primary/50 mb-6">{c.num}</p>
+            <p className="font-mono text-4xl text-primary mb-6">{c.num}</p>
             <h3 className="font-medium text-foreground text-xl mb-3">{c.title}</h3>
             <p className="text-sm text-dim leading-relaxed mb-8 flex-1">{c.desc}</p>
             <div className="flex flex-wrap gap-1.5">
