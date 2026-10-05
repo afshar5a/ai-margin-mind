@@ -1,73 +1,43 @@
-# Welcome to your Lovable project
+# AI Margin Mind
 
-## Project info
+**Created by:** Afshar Sanam  
+**Project type:** Independent AI systems economics research
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+AI Margin Mind explores the relationship between **AI system architecture and economic viability**.
 
-## How can I edit this code?
+The project examines how model selection, token usage, retrieval depth, orchestration overhead and caching behaviour influence unit economics, break-even thresholds and margin resilience as AI systems scale.
 
-There are several ways of editing your application.
+## Core Framework
 
-**Use Lovable**
+The research is structured around three areas:
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+1. **Architecture → Cost Map**  
+   Map architectural decisions to their cost footprint.
 
-Changes made via Lovable will be committed automatically to this repo.
+2. **Margin Resilience**  
+   Examine how margins respond to changing usage, complexity and retrieval depth.
 
-**Use your preferred IDE**
+3. **Optimization Levers**  
+   Explore architectural choices under cost, latency and quality constraints.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Research Tracks
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- AI Systems Economics
+- Economic Signal Research
+- Optimization & Structural Modelling
 
-Follow these steps:
+## Tech Stack
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
 - React
-- shadcn-ui
+- TypeScript
+- Vite
 - Tailwind CSS
+- shadcn/ui
 
-## How can I deploy this project?
+## Development Approach
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+The project combines my research framing, analytical concepts, requirements and iterative design with AI-assisted development tooling.
 
-## Can I connect a custom domain to my Lovable project?
+## Independence
 
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+This is independent personal research developed outside my professional responsibilities. No confidential or proprietary employer information is used.
